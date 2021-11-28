@@ -1,6 +1,6 @@
 const express = require("express")
 
-const Author = require("./models/authors.model")
+const Author = require("../models/authors.model")
 
 const router = express.Router()
 

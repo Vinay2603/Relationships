@@ -1,6 +1,6 @@
 const express = require("express")
 
-const Section = require("./models/sections.model")
+const Section = require("../models/sections.model")
 
 const router = express.Router()
 

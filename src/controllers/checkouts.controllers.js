@@ -1,6 +1,6 @@
 const express = require("express")
 
-const Checkout = require("./models/checkouts.model")
+const Checkout = require("../models/checkouts.model")
 
 const router = express.Router()
 
