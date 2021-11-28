@@ -82,7 +82,7 @@ const Author = mongoose.model("author",authorSchema)
 
 // **************** checkout Schema******************/
 const checkoutSchema = new mongoose.Schema({
-    user_name:{type:String , required: true},
+    checkout_s:{type:Boolean, required: true},
     book_id :{
         type :  mongoose.Schema.Types.ObjectId,
         ref : "book",
@@ -320,7 +320,7 @@ app.post("/checkout", async(req,res)=>{
         return res.send(500).json({message:e.message, status: "failed"})
     }
 })
-
+/*
 app.get("/checkout",async(req,res)=>{
     try{
      const checkout = await Checkout.find().lean().exec()
@@ -328,10 +328,25 @@ app.get("/checkout",async(req,res)=>{
     }catch(e){
         return res.send(500).json({message:e.message,status: "failed"})
     }
+})*/
+// to find books which are checkout 
+app.get("/checkout", (req,res)=>{
+    try{
+       const checkout = Checkout.filter((check)=>   check.checkout_s == true )
+       return  res.send({checkout})
+    }catch(e){
+         return res.status(500).json({message:e.message, status:"failed"})
+    }
 })
-
-
-
+// to find books which are checkin
+app.get("/checkout", (req,res)=>{
+    try{
+       const checkout = Checkout.filter((check)=>   check.checkout_s != true )
+       return  res.send({checkout})
+    }catch(e){
+         return res.status(500).json({message:e.message, status:"failed"})
+    }
+})
 app.get("/checkout/:id", async(req,res)=>{
     try{
       const checkout = await Checkout.findById(req.params.id ).lean().exec() 
