@@ -7,7 +7,7 @@ const router = express.Router()
 
 // **************** author CURD *****************//
 
-router.post("/authors", async(req,res)=>{
+router.post("", async(req,res)=>{
     try{
     const author = await Author.create(req.body)
     res.status(201).send(author)
@@ -16,7 +16,7 @@ router.post("/authors", async(req,res)=>{
     }
 })
 
-router.get("/authors",async(req,res)=>{
+router.get("",async(req,res)=>{
     try{
      const author = await Author.find().lean().exec()
    return  res.send({author})
@@ -27,7 +27,7 @@ router.get("/authors",async(req,res)=>{
 
 
 
-router.get("/authors/:id", async(req,res)=>{
+router.get("/:id", async(req,res)=>{
     try{
       const author = await Author.findById(req.params.id ).lean().exec() 
       return res.send({author})
@@ -36,7 +36,7 @@ router.get("/authors/:id", async(req,res)=>{
     }
 })
 
-router.patch("/authors/:id",async(req,res)=>{
+router.patch("/:id",async(req,res)=>{
       try{
             const author = await Author.findByIdAndUpdate(req.params.id , req.body ,{new :true })
             return res.status(201).send(author)
@@ -45,7 +45,7 @@ router.patch("/authors/:id",async(req,res)=>{
       }
 })
 
-router.delete("/authors/:id",async(req,res)=>{
+router.delete("/:id",async(req,res)=>{
     try{
          const author = await Author.findByIdAndDelete(req.params.id).lean().exec()
          return res.status(200).send(author)
