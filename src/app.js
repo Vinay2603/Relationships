@@ -25,5 +25,5 @@ app.use("/books", bookController)
 app.use("/authors", authorController)
 app.use("/checkouts", checkoutController)
 
-
+module.exports = app
 
